@@ -1,66 +1,21 @@
-<table class="menuItems">
+<table class="dimensions">
     <tr>
         <td>
-            <label for="sheetCake">Sheet Cake</label>
-            <input type="radio" id="sheetCake" name="cakeType" value="sheet" checked>
-        </td>
-        <td>
-            <label for="roundCake">Round Cake</label>
-            <input type="radio" id="roundCake" name="cakeType" value="round">
-        </td>
-    </tr>
-    <tr id="sheetCakeOptions">
-        <td>
             <label for="length">Length (in cm)</label>
-            <input type="number" id="length" name="length" value="30" min="30" max="60">
+            <input type="number" id="length" name="length" value="20" min="20" max="100">
             
         </td>
         <td>
             <label for="width">Width (in cm)</label>
-            <input type="number" id="width" name="width" value="30" min="30" max="45">
+            <input type="number" id="width" name="width" value="20" min="20" max="100">
         </td>
-    </tr>
-    <tr id="roundCakeOptions" class="hidden">
         <td>
-            <label for="radius">Radius (in cm)</label>
-            <input type="number" id="radius" name="radius" value="15" min="15" max="30">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="layers">Layers</label>
-            <input type="number" id="layers" name="layers" value="1" min="1" max="3">
+            <label for="height">Height (in cm)</label>
+            <input type="number" id="height" name="height" value="20" min="20" max="100">
         </td>
     </tr>
 </table>
-<h4>Extras</h4>
-<table>
-    <tr>
-        <td>
-            <label for="icing">Cream Cheese icing $5</label>
-        </td>
-        <td>
-            <input type="checkbox" name="icing" id="icing">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="topping">Fruit and Almonds topping $7</label>
-        </td>
-        <td>
-            <input type="checkbox" name="topping" id="topping">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="filling">Fruit jam filling between layers $4</label>
-        </td>
-        <td>
-            <input type="checkbox" name="filling" id="filling">
-        </td>
-    </tr>
-</table>
-<p id="total">Total: $18.00</p>
+<div id="total"></div>
 <input type="submit" value="Submit Order" class="button" id="submit">
 <input type="reset" class="button" id="reset">
 </form>
