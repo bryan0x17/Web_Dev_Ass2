@@ -34,17 +34,17 @@ let orderConDimensionsNode;
 let orderConTotalNode;
 
 function setMainListeners() {
-    cubeButton.addEventListener('click', selectType('cube.html'));
-    cylinderButton.addEventListener('click', selectType('cylinder.html'));
-    sphereButton.addEventListener('click', selectType('sphere.html'));
-    coneButton.addEventListener('click', selectType('cone.html'));
+    cubeButton.addEventListener('click', function() {selectType('cube.html')});
+    cylinderButton.addEventListener('click', function() {selectType('cylinder.html')});
+    sphereButton.addEventListener('click', function() {selectType('sphere.html')});
+    coneButton.addEventListener('click', function() {selectType('cone.html')});
     
 }
 
 function selectType(typePage) {
     type = typePage;
     asyncRequest = new XMLHttpRequest();
-	asyncRequest.onreadystatechange = loadProduct();
+	asyncRequest.onreadystatechange = loadProduct;
     asyncRequest.open("GET", typePage, true);
     asyncRequest.send();
 }
@@ -67,11 +67,19 @@ function getProductElements() {
 }
 
 function setProductListeners() {
-    lengthNode.addEventListener('change', printTotal);
-    widthNode.addEventListener('change', printTotal);
-    heightNode.addEventListener('change', printTotal);
-    radiusNode.addEventListener('change', printTotal);
-    radius2Node.addEventListener('change', printTotal);
+    if (lengthNode) {
+        lengthNode.addEventListener('change', printTotal);
+        widthNode.addEventListener('change', printTotal);
+    }
+    if (heightNode) {
+        heightNode.addEventListener('change', printTotal);
+    }
+    if (radiusNode) {
+        radiusNode.addEventListener('change', printTotal);
+    }
+    if (radius2Node) {
+        radius2Node.addEventListener('change', printTotal);
+    }
     document.getElementById('form').addEventListener('submit', function(event) {
         event.preventDefault();
         printOrder();
@@ -95,6 +103,19 @@ function getTotal() {
     return total;
 }
 
+function getVolume() {
+    if (lengthNode && widthNode && heightNode) {
+        volume = getCubeVolume();
+    } else if (radiusNode && radius2Node && heightNode) {
+        volume = getConeVolume();
+    } else if (radiusNode && heightNode) {
+        volume = getCylinderVolume();
+    } else if (radiusNode) {
+        volume = getSphereVolume();
+    }
+    return volume;
+}
+
 function getCubeVolume() {
     let length = parseFloat(lengthNode.value);
     let width = parseFloat(widthNode.value);
@@ -106,6 +127,10 @@ function getCubeVolume() {
 function getConeVolume() {
     let radius = parseFloat(radiusNode.value);
     let radius2 = parseFloat(radius2Node.value);
+    if (radius > radius2) {
+        window.alert('The top of a conical planter must be larger than the bottom!');
+        radiusNode.value = parseFloat(radius2Node.value - 1);
+    }
     let height = parseFloat(heightNode.value);
     volume = (1 / 3) * Math.PI * (radius * radius + radius * radius2 + radius2 * radius2) * height;
     return volume;
@@ -126,7 +151,7 @@ function getSphereVolume() {
 
 function printOrder() {
     submitRequest = new XMLHttpRequest();
-	submitRequest.onreadystatechange = loadConfirmation();
+	submitRequest.onreadystatechange = loadConfirmation;
     submitRequest.open('GET', 'confirmation.html', true);
     submitRequest.send();
 }
@@ -167,6 +192,8 @@ function printConfirmation() {
         orderType = 'Conical';
     }
     orderConTypeNode.textContent = orderType + ' planter';
-    orderConDimensionsNode.textContent = `${radiusNode ? radiusNode.value : ''}${widthNode ? widthNode.value + 'x' : ''}${lengthNode ? lengthNode.value + 'x' : ''}${heightNode ? heightNode.value : ''}${radius2Node ? 'x' + radius2Node.value : ''}cm (Volume: ${volume}cubic cm)`;
-    orderConTotalNode = `$${total.toFixed(2)}`;
+    orderConDimensionsNode.textContent = `${radiusNode ? radiusNode.value : ''}${widthNode ? widthNode.value + 'x' : ''}${lengthNode ? lengthNode.value : ''}${heightNode ? 'x' + heightNode.value : ''}${radius2Node ? 'x' + radius2Node.value : ''}cm (Volume: ${Math.round(getVolume())} cubic cm)`;
+    orderConTotalNode.textContent = `$${getTotal().toFixed(2)}`;
 }
+
+setMainListeners();
