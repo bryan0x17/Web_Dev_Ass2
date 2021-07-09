@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midterm Project Part 3</title>
+    <link rel="stylesheet" href="part3.css">
+    <script src="part3.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Nice Lawn Landscaping</h1>
+        <div>2465 14 Ave SW</div>
+        <div>Calgary, Alberta</div>
+        <div>403-555-2576</div>
+    </header>
+    <h2>Custom Planter Orders</h2>
+    <h3>Your Details</h3>
+    <form id="form">
+    <table id="information">
+        <tr>
+            <td>
+                <label for="firstName">First Name</label>
+            </td>
+            <td>
+                <input type="text" name="firstName" id="firstName" pattern="[a-zA-Z- ]+" maxlength="25" required autofocus>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="lastName">Last Name</label>
+            </td>
+            <td>
+                <input type="text" name="lastName" id="lastName" pattern="[a-zA-Z- ]+" maxlength="25" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="address">Street Address</label>
+            </td>
+            <td>
+                <input type="text" id="address" name="address" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="postCode">Postal Code</label>
+            </td>
+            <td>
+                <input type="text" name="postCode" id="postCode" pattern="[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" placeholder="A1A 1A1" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="phone">Contact Phone Number</label>
+            </td>
+            <td>
+                <input type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="403-555-1010" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="email">Email Address</label>
+            </td>
+            <td>
+                <input type="email" id="email" name="email" title="johndoe@domain.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="johndoe@hotmail.com" required>
+            </td>
+        </tr>
+    </table>
+    <h3>Planter Style</h3>
+    <div id="imageButtons">
+        <div id="cubeButton">
+            <img src="photos/8800-B-Fairfield_28x28_Black-LS_2_.jpg" alt="Cubical Planters"><!--Source: https://foryourhomeandgarden.com/images/detailed/55/8800-B-Fairfield_28x28_Black-LS_2_.jpg-->
+            <div class="buttonText">Cubical Planters</div>
+        </div>
+        <div id="cylinderButton">
+            <img src="photos/GRC_PLANTER-03.jpg" alt="Cylindrical Planters"><!--Source: https://www.bottongardiner.com.au/wp-content/uploads/2020/05/GRC_PLANTER-03.jpg-->
+            <div class="buttonText">Cylindrical Planters</div>
+        </div>
+        <div id="sphereButton">
+            <img src="photos/dark-gray-outdoor-sphere-planters-1.jpg" alt="Spherical Planters"><!--Source: https://www.thegreenhead.com/imgs/dark-gray-outdoor-sphere-planters-1.jpg-->
+            <div class="buttonText">Spherical Planters</div>
+        </div>
+        <div id="coneButton">
+            <img src="photos/Corten_conical cms 5-858x1200.jpg" alt="Conical Planters"><!--Source: https://www.iotagarden.com/image/cache/data/products/Corten_conical%20cms%205-858x1200.jpg-->
+            <div class="buttonText">Conical Planters</div>
+        </div>
+    </div>
+</body>
+</html>
